@@ -10,26 +10,28 @@ const board = [
     [2, 4, 3, 7, 5, 9, 6, 1, 8]
 ];
 
+const DIM = 9;
+
 function Sudoku(data) {
 
     this.data = data;
     // check row
     const checkRow = () => this.data.map((item, index, array) => {
-        return [...new Set(array[index])].length === 9
+        return [...new Set(array[index])].length === DIM
     })
 
     // check column
     const checkColumn = () => this.data.map((check, idx, arry) => {
         return [...new Set(arry.map((item, index) => {
             return item[idx]
-        }))].length === 9
+        }))].length === DIM
     })
 
     const checkSquare = () => {
         const _grid = [];
 
         // setup 9 column of array
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < DIM; i++) {
             _grid.push([]);
         }
 
@@ -43,7 +45,7 @@ function Sudoku(data) {
             });
         });
 
-        return _grid.map(item => [...new Set(item)].length === 9)
+        return _grid.map(item => [...new Set(item)].length === DIM)
     };
 
     // check if action returned 1 true value
